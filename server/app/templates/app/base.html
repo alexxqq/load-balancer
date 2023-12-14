@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{% static 'app/css/styles.css' %}" rel="stylesheet"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <img src="./011.png" alt="anaboliy" width="20%">
+      <!-- <a class="headerText headerBtn" href="./">Login</a>
+      <a class="headerText headerBtn" href="./">Register</a> -->
+    </div>
+    <div class="container">
+        <div class="addNode">
+            <div class="post-form">
+            <form method="post" action="{% url 'send_data' %}" class="form">
+                {% csrf_token %}
+                <label for="input_field" class="input-text">Input POST data:</label><br>
+                <input type="textNode" class="input_field" name="input_field" id="input_field" required><br>
+                <button type="submit" class="sendBtn">SEND</button>
+            </form>
+        </div>
+            <a class="butnNode" href="{% url 'stats_data' %}">STATS</a>
+            <a class="butnNode" href="{% url 'receive_data' %}">RECEIVE</a>
+
+            <div class="post-form">
+                <form method="post" action="{% url 'add_node' %}" class="form">
+                    {% csrf_token %}
+                    <label for="input_field" class="input-text">Enter Node name:</label><br>
+                    <input type="textNode" class="input_field" name="input_field" id="input_field" required><br>
+                    <button type="submit" class="sendBtn">ADD NODE</button>
+                </form>
+            </div>
+
+
+            <div class="post-form">
+                <form method="post" action="{% url 'remove_node' %}" class="form">
+                    {% csrf_token %}
+                    <label for="input_field" class="input-text">Enter Node to delete:</label><br>
+                    <input type="textNode" class="input_field" name="input_field" id="input_field" required><br>
+                    <button type="submit" class="sendBtn">DELETE NODE</button>
+                </form>
+            </div>
+            <a class="butnNode" href="{% url 'get_nodes' %}">LIST</a>
+            <h1>STATS: {{ stats }}</h1>
+            <h1>RECEIVE: {{ receive }}</h1>
+            <h1>LIST: {{ list }}</h1>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <p class="centerText ©">© Talon Corporation 2022</p>
+      </div>
+</body>
+</html>
